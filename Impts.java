@@ -25,6 +25,13 @@ public class Impts {
         System.out.println();
     }
 
+    public static void printArray(double[] arry) { //Prints a double array
+        for (double j : arry) {
+            System.out.print(j + " ");
+        }
+        System.out.println();
+    }
+
     public static void printArray(int[][] arry) { //Prints a two dimensional integer array
         for (int[] ints : arry) {
             for (int anInt : ints) {
