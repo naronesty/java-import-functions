@@ -248,11 +248,36 @@ public class Impts {
         }
         return array1;
     }
+
     public static boolean[] append(boolean[] array1, boolean[] array2) { //concatenates an array and an array
         for (int i = 0; i < array2.length; i++) {
             array1 = append(array1, array2[i]);
         }
         return array1;
+    }
+
+    public static int countFreq(int number, int[] array) { //returns the frequency of a number in an int[]
+        int ret = 0;
+        for (int i: array) {
+            if (number == i) ret++;
+        }
+        return ret;
+    }
+
+    public static int countFreq(String number, String[] array) { //returns the frequency of a number in an int[]
+        int ret = 0;
+        for (String i: array) {
+            if (number == i) ret++;
+        }
+        return ret;
+    }
+
+    public static int countFreq(double number, double[] array) { //returns the frequency of a number in an int[]
+        int ret = 0;
+        for (double i: array) {
+            if (number == i) ret++;
+        }
+        return ret;
     }
 
     public static void main(String[] args) {
@@ -262,10 +287,10 @@ public class Impts {
 
         String[] x = new String[]{"a", "b", "c"};
         printArray(reverseArray(x));
-
-        int[] y = new int[]{1, 2, 3};
+*/
+        int[] y = new int[]{1, 2, 3, 3, 3};
         int[] z = new int[]{4, 5, 6};
-
+/*
         printArray(reverseArray(y));
 
         printArray(createIntegerArray(1, 2, 3, 4));
@@ -274,5 +299,6 @@ public class Impts {
         printArray(getCommon(a, b));
 
         printArray(append(z, y));*/
+        System.out.println(countFreq(3, y));
     }
 }
