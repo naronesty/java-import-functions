@@ -18,6 +18,8 @@
  *  Impts.divisors(int) // Returns an array of factors of a number
  *  Impts.append(array, object) // Returns the array argument with the object appended to the end: object can be another array
  *  Impts.countFreq(object, array) // Returns the frequency of an object in an array: object CANNOT be another array
+ *  Impts.titleCase(string) // Returns the string converted to title notation
+ *  Impts.removeChars(string1, string2) // Removes the chars in string2 from string1
  ******************************************************************************/
 
 import java.util.*;
@@ -270,18 +272,18 @@ public class Impts {
         return array1;
     }
 
-    public static int countFreq(int number, int[] array) { //returns the frequency of a number in an int[]
+    public static int countFreq(int num, int[] array) { //returns the frequency of a number in an int[]
         int ret = 0;
         for (int i: array) {
-            if (number == i) ret++;
+            if (num == i) ret++;
         }
         return ret;
     }
 
-    public static int countFreq(String number, String[] array) { //returns the frequency of a number in an int[]
+    public static int countFreq(String str, String[] array) { //returns the frequency of a number in an int[]
         int ret = 0;
         for (String i: array) {
-            if (number == i) ret++;
+            if (str == i) ret++;
         }
         return ret;
     }
@@ -294,25 +296,40 @@ public class Impts {
         return ret;
     }
 
+    public static String titleCase(String str) { //returns a String in title notation
+        return str.substring(0, 1).toUpperCase() + str.substring(1).toLowerCase();
+    }
+
+    public static String removeChars(String str, String remove) { //removes the chars in remove from str
+        String ret = "";
+        for (int i = 0; i < str.length(); i++) {
+            if (remove.toLowerCase().indexOf(str.substring(i, i+1).toLowerCase()) == -1) ret += str.substring(i, i+1);
+        }
+        return ret;
+    }
+
     public static void main(String[] args) {
-        /*
-        int[][] c = {{1, 2, 3}, {4, 5, 6}, {1, 3, 5}};
-        printArray(c);
 
-        String[] x = new String[]{"a", "b", "c"};
-        printArray(reverseArray(x));
-*/
-        int[] y = new int[]{1, 2, 3, 3, 3};
-        int[] z = new int[]{4, 5, 6};
-/*
-        printArray(reverseArray(y));
-
-        printArray(createIntegerArray(1, 2, 3, 4));
-        String[] a = {"a", "e", "i"};
-        String[] b = {"i", "o", "u"};
-        printArray(getCommon(a, b));
-
-        printArray(append(z, y));*/
-        System.out.println(countFreq(3, y));
+//        int[][] c = {{1, 2, 3}, {4, 5, 6}, {1, 3, 5}};
+//        printArray(c);
+//
+//        String[] x = new String[]{"a", "b", "c"};
+//        printArray(reverseArray(x));
+//
+//        int[] y = new int[]{1, 2, 3, 3, 3};
+//        int[] z = new int[]{4, 5, 6};
+//
+//        printArray(reverseArray(y));
+//
+//        printArray(createIntegerArray(1, 2, 3, 4));
+//        String[] a = {"a", "e", "i"};
+//        String[] b = {"i", "o", "u"};
+//        printArray(getCommon(a, b));
+//
+//        printArray(append(z, y));
+//        System.out.println(countFreq(3, y));
+//
+//        System.out.println(titleNotation("HoLa"));
+        System.out.println(removeChars("Hello good sir", "hr")); // "Hello good sir" with an english accent
     }
 }
