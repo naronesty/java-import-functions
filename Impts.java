@@ -20,6 +20,7 @@
  *  Impts.countFreq(object, array) // Returns the frequency of an object in an array: object CANNOT be another array
  *  Impts.titleCase(string) // Returns the string converted to title notation
  *  Impts.removeChars(string1, string2) // Removes the chars in string2 from string1
+ *  Impts.remDupes(list) // Removes duplicates in a list
  ******************************************************************************/
 
 import java.util.*;
@@ -303,9 +304,26 @@ public class Impts {
     public static String removeChars(String str, String remove) { //removes the chars in remove from str
         String ret = "";
         for (int i = 0; i < str.length(); i++) {
-            if (remove.toLowerCase().indexOf(str.substring(i, i+1).toLowerCase()) == -1) ret += str.substring(i, i+1);
+            if (!remove.toLowerCase().contains(str.substring(i, i + 1).toLowerCase())) ret += str.substring(i, i+1);
         }
         return ret;
+    }
+
+    public static ArrayList<String> remDupes(ArrayList<String> list) {
+        Collections.sort(list);
+        ArrayList<String> listo = new ArrayList<String>();
+        for (int i = 0; i < list.size(); i++) {
+            if (!listo.contains(list.get(i))) {
+                listo.add(list.get(i));
+            }
+        }
+        return listo;
+    }
+
+    public static void reverseList(ArrayList<String> list) {
+        for (int i = 0; i < list.size() / 2; i++) {
+            Collections.swap(list, i, list.size() - (i + 1));
+        }
     }
 
     public static void main(String[] args) {
@@ -330,6 +348,11 @@ public class Impts {
 //        System.out.println(countFreq(3, y));
 //
 //        System.out.println(titleNotation("HoLa"));
-        System.out.println(removeChars("Hello good sir", "hr")); // "Hello good sir" with an english accent
+//        System.out.println(removeChars("Hello good sir", "hr")); // "Hello good sir" with an english accent
+          List<String> list0 = Arrays.asList("The", "Fox", "Had", "Had", "The", "Bad", "bad", "Bad", "Bad");
+          ArrayList<String> listo = new ArrayList<String>(list0);
+//          System.out.println(remDupes(listo));
+        reverseList(listo);
+        System.out.println(listo);
     }
 }
