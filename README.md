@@ -1,6 +1,6 @@
 # Java-Import-Functions
-I made a library of useful functions that I use a lot.
+A library of useful functions for java.
 
-I began making it before we started using all of StdLib so there are some redundant functions like printArray()
+Check the documentation for a copy-pastable functions list and descriptions of each function
 
-Check the documentation for a copy-pastable functions list
+Note: some of the functions may be redundant if other modules are active, possibly including util.* or even lang.*
