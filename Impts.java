@@ -24,6 +24,8 @@
  *  Impts.delDupe(list) // Deletes duplicates in a list
  *  Impts.reverseList(list) // Reverses a list
  *  Impts.indexOfAll(list0, list1) // Returns a list of the start indexes of where list1 appears in list0
+ *  Impts.gcd(int 0, int1) // Returns greatest common factor
+ *  Impts.lcm(int0, int1) // Returns least common multiple
  ******************************************************************************/
 
 import java.util.*;
@@ -347,6 +349,23 @@ public class Impts {
     public static void reverseList(ArrayList<String> list) { // Reverses a list
         for (int i = 0; i < list.size() / 2; i++) {
             Collections.swap(list, i, list.size() - (i + 1));
+        }
+    }
+
+    public static int gcd(int a, int b) { // Returns greatest common factor
+        return Impts.max(Impts.getCommon(Impts.divisors(a), Impts.divisors(b)));
+    }
+
+    public static int lcm(int a, int b) { // Returns Least Common Multiple
+        if (a == 0 || b == 0) return 0;
+
+        int x = a;
+        int y = b;
+        int count = 0;
+        while (true) {
+            if (x == y) return x;
+            else if (x < y) x += a;
+            else y += b;
         }
     }
 
