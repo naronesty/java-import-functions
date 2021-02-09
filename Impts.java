@@ -12,7 +12,7 @@
  *  Impts.reverseArray(array) // Returns an array that is the parameter reversed
  *  Impts.sumArray(array) // Returns the sum of all elements in an array
  *  Impts.pyDivide(int0, int1) // Returns the result of python-style int -> double division of two ints
- *  Impts.getCommon (array0, array1) // Returns an array of the common elements in two arrays
+ *  Impts.getCommon(array0, array1) // Returns an array of the common elements in two arrays
  *  Impts.max(array) // Returns the max value in an array
  *  Impts.min(array) // Returns the min value in an array
  *  Impts.divisors(int) // Returns an array of factors of a number
