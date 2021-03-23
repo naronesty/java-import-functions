@@ -3,6 +3,6 @@ A library of useful functions for java.
 
 Check the documentation for a copy-pastable functions list and descriptions of each function
 
-Um, I'm supposed to say stuff here... right?
+Um, I'm supposed to say more stuff here... right?
 
-"stuff"? Ok good enough.
+"more stuff"? Ok good enough.
