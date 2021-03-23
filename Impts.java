@@ -26,6 +26,10 @@
  *  Impts.indexOfAll(list0, list1) // Returns a list of the start indexes of where list1 appears in list0
  *  Impts.gcd(int 0, int1) // Returns greatest common factor
  *  Impts.lcm(int0, int1) // Returns least common multiple
+ *  Impts.randomizeArrList(list) // Randomizes an ArrayList in place
+ *  Impts.reverseString(string) // Returns the string reversed
+ *  Impts.binaryToDecimal(binaryNum) // Returns a decimal long from a binary String
+ *  Impts.decimalToBinary(long) // Returns a binary String from a decimal long
  ******************************************************************************/
 
 import java.util.*;
@@ -369,13 +373,48 @@ public class Impts {
         }
     }
 
+    public static void randomizeArrList(ArrayList<String> list) { // Randomizes an ArrayList in place
+        int len = list.size();
+        for (int i = 0; i < len; i++) {
+            int a = (int) (i + Math.random() * (len - i - 1));
+            String temp = list.get(i);
+            list.set(i, list.get(a));
+            list.set(a, temp);
+        }
+    }
+
+    public static String reverseString(String s) { // Returns the string reversed
+        String ret = "";
+        for (int i = s.length() - 1; i >= 0; i--) {
+            ret += s.charAt(i);
+        }
+        return ret;
+    }
+
+    public static long binaryToDecimal(String binaryNum) { // Returns a decimal integer from a binary String
+        long ret = 0;
+        for (int i = binaryNum.length() - 1; i >= 0; i--) {
+            ret += Long.parseLong(String.valueOf(binaryNum.charAt(binaryNum.length() - 1 - i))) * Math.pow(2, i);
+        }
+        return ret;
+    }
+
+    public static String decimalToBinary(long d) { // Returns a binary String from a decimal integer
+        String ret = "";
+        while (d > 0) {
+            ret += d % 2;
+            d /= 2;
+        }
+        return reverseString(ret);
+    }
+
     public static void main(String[] args) {
 
 //        int[][] c = {{1, 2, 3}, {4, 5, 6}, {1, 3, 5}};
 //        printArray(c);
 //
-//        String[] x = new String[]{"a", "b", "c"};
-//        printArray(reverseArray(x));
+        String[] x = new String[]{"a", "b", "c"};
+        printArray(reverseArray(x));
 //
 //        int[] y = new int[]{1, 2, 3, 3, 3};
 //        int[] z = new int[]{4, 5, 6};
@@ -397,5 +436,9 @@ public class Impts {
 //          System.out.println(remDupes(listo));
         reverseList(listo);
         System.out.println(listo);
+        String s = "helloGoodSir";
+        System.out.println(reverseString(s));
+        System.out.println(binaryToDecimal("1111111000001011100000"));
+        System.out.println(decimalToBinary(4162272));
     }
 }
