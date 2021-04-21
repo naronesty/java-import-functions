@@ -20,8 +20,10 @@
  *  Impts.countFreq(object, array) // Returns the frequency of an object in an array: object CANNOT be another array
  *  Impts.titleCase(string) // Returns the string converted to title notation
  *  Impts.removeChars(string0, string1) // Returns a copy of string0 with the chars in string1 removed
- *  Impts.remDupe(list) // Returns a copy of the parameter list with no duplicates
- *  Impts.delDupe(list) // Deletes duplicates in a list
+ *  Impts.remDupeStr(list<String>) // Returns a copy of the parameter String list with no duplicates
+ *  Impts.remDupeInt(list<Integer>) // Returns a copy of the parameter Integer list with no duplicates
+ *  Impts.delDupeStr(list<String>) // Deletes duplicates in a String list
+ *  Impts.delDupeInt(list<Integer>) // Deletes duplicates in an Integer list
  *  Impts.reverseList(list) // Reverses a list
  *  Impts.indexOfAll(list0, list1) // Returns a list of the start indexes of where list1 appears in list0
  *  Impts.gcd(int 0, int1) // Returns greatest common factor
@@ -30,10 +32,14 @@
  *  Impts.reverseString(string) // Returns the string reversed
  *  Impts.binaryToDecimal(binaryNum) // Returns a decimal long from a binary String
  *  Impts.decimalToBinary(long) // Returns a binary String from a decimal long
+ *  Impts.intArrToArrList(int[]) // Returns an Integer ArrayList version of an int[]
+ *  Impts.doubleArrToArrList(int[]) // Returns a Double ArrayList version of a double[]
+ *  Impts.strArrToArrList(int[]) // Returns a String ArrayList version of a str[]
  ******************************************************************************/
 
 import java.util.*;
 import java.lang.*;
+import java.util.stream.Collectors;
 
 public class Impts {
 
@@ -318,7 +324,7 @@ public class Impts {
         return ret;
     }
 
-    public static ArrayList<String> remDupe(ArrayList<String> list) { // Returns a copy of the parameter list with no duplicates
+    public static ArrayList<String> remDupeStr(ArrayList<String> list) { // Returns a copy of the parameter list with no duplicates
         Collections.sort(list);
         ArrayList<String> listo = new ArrayList<String>();
         for (int i = 0; i < list.size(); i++) {
@@ -329,11 +335,32 @@ public class Impts {
         return listo;
     }
 
-    public static void delDupe (ArrayList<String> list) { // Deletes duplicates in a list
+    public static ArrayList<Integer> remDupeInt(ArrayList<Integer> list) { // Returns a copy of the parameter list with no duplicates
+        ArrayList<Integer> listo = new ArrayList<Integer>();
+        for (int i = 0; i < list.size(); i++) {
+            if (!listo.contains(list.get(i))) {
+                listo.add(list.get(i));
+            }
+        }
+        return listo;
+    }
+
+    public static void delDupeStr (ArrayList<String> list) { // Deletes duplicates in a list
         Collections.sort(list);
         for (int i = 0; i < list.size(); i++) {
             String last = list.get(i);
             if (last.equals(list.get(i + 1))) {
+                list.remove(i + 1);
+                i--;
+            }
+        }
+    }
+
+    public static void delDupeInt (ArrayList<Integer> list) { // Deletes duplicates in a list
+        Collections.sort(list);
+        for (int i = 0; i < list.size()-1; i++) {
+            int last = list.get(i);
+            if (last == list.get(i + 1)) {
                 list.remove(i + 1);
                 i--;
             }
@@ -408,21 +435,46 @@ public class Impts {
         return reverseString(ret);
     }
 
+    public static ArrayList<Integer> intArrToArrList(int[] arr) { // Returns an Integer ArrayList version of an int[]
+        return (ArrayList<Integer>) Arrays.stream(arr).boxed().collect(Collectors.toList());
+    }
+
+    public static ArrayList<Double> doubleArrToArrList(double[] arr) { // Returns a Double ArrayList version of a double[]
+        return (ArrayList<Double>) Arrays.stream(arr).boxed().collect(Collectors.toList());
+    }
+
+    public static ArrayList<String> strArrToArrList(String[] arr) { // Returns a String ArrayList version of a String[]
+        return new ArrayList<>(Arrays.asList(arr));
+    }
+
     public static void main(String[] args) {
 
 //        int[][] c = {{1, 2, 3}, {4, 5, 6}, {1, 3, 5}};
 //        printArray(c);
 //
-        String[] x = new String[]{"a", "b", "c"};
-        printArray(reverseArray(x));
+//        String[] x = new String[]{"a", "b", "c"};
+//        printArray(reverseArray(x));
 //
-//        int[] y = new int[]{1, 2, 3, 3, 3};
-//        int[] z = new int[]{4, 5, 6};
+//        int[] y = new int[]{11, 11, 11, 44, 44, 0, 29, 33, 33, 33, 33, 33};
+//        ArrayList<Integer> fukish = (ArrayList<Integer>) Arrays.stream(y).boxed().collect(Collectors.toList());
+//        ArrayList<Integer> ulakjsf = new ArrayList<>();
+//        ulakjsf.add(11);
+//        ulakjsf.add(11);
+//        delDupeInt(fukish);
+//        System.out.println(fukish);
+        int[] z = new int[]{4, 5, 6};
+        System.out.println(intArrToArrList(z));
+
+        double[] y = new double[]{4.3, 5.0, 6.9};
+        System.out.println(doubleArrToArrList(y));
 //
 //        printArray(reverseArray(y));
 //
 //        printArray(createIntegerArray(1, 2, 3, 4));
-//        String[] a = {"a", "e", "i"};
+        String[] a = {"a", "e", "i", "i", "i", "o", "u", "u", "u"};
+        System.out.println(strArrToArrList(a));
+//        ArrayList fuki = new ArrayList(Arrays.asList(a));
+//        System.out.println(remDupe(fuki));
 //        String[] b = {"i", "o", "u"};
 //        printArray(getCommon(a, b));
 //
@@ -431,14 +483,14 @@ public class Impts {
 //
 //        System.out.println(titleNotation("HoLa"));
 //        System.out.println(removeChars("Hello good sir", "hr")); // "Hello good sir" with an english accent
-          List<String> list0 = Arrays.asList("The", "Fox", "Had", "Had", "The", "Bad", "bad", "Bad", "Bad");
-          ArrayList<String> listo = new ArrayList<String>(list0);
-//          System.out.println(remDupes(listo));
-        reverseList(listo);
-        System.out.println(listo);
-        String s = "helloGoodSir";
-        System.out.println(reverseString(s));
-        System.out.println(binaryToDecimal("1111111000001011100000"));
-        System.out.println(decimalToBinary(4162272));
+//        List<String> list0 = Arrays.asList("The", "Fox", "Had", "Had", "The", "Bad", "bad", "Bad", "Bad");
+//        ArrayList<String> listo = new ArrayList<String>(list0);
+//        System.out.println(remDupes(listo));
+//        reverseList(listo);
+//        System.out.println(listo);
+//        String s = "helloGoodSir";
+//        System.out.println(reverseString(s));
+//        System.out.println(binaryToDecimal("1111111000001011100000"));
+//        System.out.println(decimalToBinary(4162272));
     }
 }
