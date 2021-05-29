@@ -33,8 +33,9 @@
  *  Impts.binaryToDecimal(binaryNum) // Returns a decimal long from a binary String
  *  Impts.decimalToBinary(long) // Returns a binary String from a decimal long
  *  Impts.intArrToArrList(int[]) // Returns an Integer ArrayList version of an int[]
- *  Impts.doubleArrToArrList(int[]) // Returns a Double ArrayList version of a double[]
- *  Impts.strArrToArrList(int[]) // Returns a String ArrayList version of a str[]
+ *  Impts.doubleArrToArrList(double[]) // Returns a Double ArrayList version of a double[]
+ *  Impts.strArrToArrList(String[]) // Returns a String ArrayList version of a str[]
+ *  Impts.mode(array) // Returns the mode of an array
  ******************************************************************************/
 
 import java.util.*;
@@ -313,7 +314,25 @@ public class Impts {
     }
 
     public static String titleCase(String str) { // Returns a String in title notation
-        return str.substring(0, 1).toUpperCase() + str.substring(1).toLowerCase();
+        ArrayList<String> titleArr = strArrToArrList(str.split(" "));
+        titleArr.set(0, titleArr.get(0).substring(0, 1).toUpperCase() + titleArr.get(0).substring(1).toLowerCase());
+        for (int i = 1; i < titleArr.size(); i++) {
+            if (titleArr.get(i).length() > 2 && !titleArr.get(i).toLowerCase().equals("the")) {
+                titleArr.set(i, titleArr.get(i).substring(0, 1).toUpperCase() + titleArr.get(i).substring(1).toLowerCase());
+            }
+            else {
+                titleArr.set(i, titleArr.get(i).toLowerCase());
+            }
+        }
+
+        String ret = "";
+        for (int i = 0; i < titleArr.size(); i++) {
+            if (i == titleArr.size() - 1) ret += titleArr.get(i);
+            else {
+                ret += titleArr.get(i) + " ";
+            }
+        }
+        return ret;
     }
 
     public static String removeChars(String str, String remove) { // Returns a copy of string0 with the chars in string1 removed
@@ -447,6 +466,34 @@ public class Impts {
         return new ArrayList<>(Arrays.asList(arr));
     }
 
+    public static int mode(int[] array) { // Returns the mode of an array
+        int ret = 0;
+        int a = 0;
+        for(int i = 0; i < array.length; i++ ) {
+            if (a == 0) {
+                ret = array[i];
+                a = 1;
+            }
+            else if (ret == array[i]) a++;
+            else a--;
+        }
+        return ret;
+    }
+
+    public static int mode(ArrayList<Integer> array) { // Returns the mode of an array
+        int ret = 0;
+        int a = 0;
+        for(int i = 0; i < array.size(); i++ ) {
+            if (a == 0) {
+                ret = array.get(i);
+                a = 1;
+            }
+            else if (ret == array.get(i)) a++;
+            else a--;
+        }
+        return ret;
+    }
+
     public static void main(String[] args) {
 
 //        int[][] c = {{1, 2, 3}, {4, 5, 6}, {1, 3, 5}};
@@ -481,7 +528,7 @@ public class Impts {
 //        printArray(append(z, y));
 //        System.out.println(countFreq(3, y));
 //
-//        System.out.println(titleNotation("HoLa"));
+        System.out.println(titleCase("thE sHaDow oF whAt was lOST"));
 //        System.out.println(removeChars("Hello good sir", "hr")); // "Hello good sir" with an english accent
 //        List<String> list0 = Arrays.asList("The", "Fox", "Had", "Had", "The", "Bad", "bad", "Bad", "Bad");
 //        ArrayList<String> listo = new ArrayList<String>(list0);
