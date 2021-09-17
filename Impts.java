@@ -26,7 +26,7 @@
  *  Impts.delDupeInt(list<Integer>) // Deletes duplicates in an Integer list
  *  Impts.reverseList(list) // Reverses a list
  *  Impts.indexOfAll(list0, list1) // Returns a list of the start indexes of where list1 appears in list0
- *  Impts.gcd(int 0, int1) // Returns greatest common factor
+ *  Impts.gcd(int0, int1) // Returns greatest common factor
  *  Impts.lcm(int0, int1) // Returns least common multiple
  *  Impts.randomizeArrList(list) // Randomizes an ArrayList in place
  *  Impts.reverseString(string) // Returns the string reversed
@@ -36,6 +36,8 @@
  *  Impts.doubleArrToArrList(double[]) // Returns a Double ArrayList version of a double[]
  *  Impts.strArrToArrList(String[]) // Returns a String ArrayList version of a str[]
  *  Impts.mode(array) // Returns the mode of an array
+ *  Imtps.findScrambled(textDoc, string) // Prints all words in textDoc that have the letters in string in any order.
+ *                                          Uses � for umlaut letters
  ******************************************************************************/
 
 import java.util.*;
@@ -494,49 +496,21 @@ public class Impts {
         return ret;
     }
 
+    public static void findScrambled(In textDoc, String letters) { // Prints all words in textDoc that have letters in any order. Use � for umlaut letters
+        String lettersLower = letters.toLowerCase();
+        ArrayList<String> letterArr = new ArrayList<>(Arrays.asList(lettersLower.split("")));
+        Collections.sort(letterArr);
+        while (!textDoc.isEmpty()) {
+            String lineLower = textDoc.readLine().toLowerCase();
+            ArrayList<String> lineArr = new ArrayList<>(Arrays.asList(lineLower.split("")));
+            Collections.sort(lineArr);
+            if (lineArr.equals(letterArr)) {
+                System.out.println(lineLower);
+            }
+        }
+    }
+
     public static void main(String[] args) {
-
-//        int[][] c = {{1, 2, 3}, {4, 5, 6}, {1, 3, 5}};
-//        printArray(c);
-//
-//        String[] x = new String[]{"a", "b", "c"};
-//        printArray(reverseArray(x));
-//
-//        int[] y = new int[]{11, 11, 11, 44, 44, 0, 29, 33, 33, 33, 33, 33};
-//        ArrayList<Integer> fukish = (ArrayList<Integer>) Arrays.stream(y).boxed().collect(Collectors.toList());
-//        ArrayList<Integer> ulakjsf = new ArrayList<>();
-//        ulakjsf.add(11);
-//        ulakjsf.add(11);
-//        delDupeInt(fukish);
-//        System.out.println(fukish);
-        int[] z = new int[]{4, 5, 6};
-        System.out.println(intArrToArrList(z));
-
-        double[] y = new double[]{4.3, 5.0, 6.9};
-        System.out.println(doubleArrToArrList(y));
-//
-//        printArray(reverseArray(y));
-//
-//        printArray(createIntegerArray(1, 2, 3, 4));
-        String[] a = {"a", "e", "i", "i", "i", "o", "u", "u", "u"};
-        System.out.println(strArrToArrList(a));
-//        ArrayList fuki = new ArrayList(Arrays.asList(a));
-//        System.out.println(remDupe(fuki));
-//        String[] b = {"i", "o", "u"};
-//        printArray(getCommon(a, b));
-//
-//        printArray(append(z, y));
-//        System.out.println(countFreq(3, y));
-//
-        System.out.println(titleCase("thE sHaDow oF whAt was lOST"));
-//        System.out.println(removeChars("Hello good sir", "hr")); // "Hello good sir" with an english accent
-//        List<String> list0 = Arrays.asList("The", "Fox", "Had", "Had", "The", "Bad", "bad", "Bad", "Bad");
-//        ArrayList<String> listo = new ArrayList<String>(list0);
-//        System.out.println(remDupes(listo));
-//        reverseList(listo);
-//        System.out.println(listo);
-//        String s = "helloGoodSir";
-//        System.out.println(reverseString(s));
 //        System.out.println(binaryToDecimal("1111111000001011100000"));
 //        System.out.println(decimalToBinary(4162272));
     }
